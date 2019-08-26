@@ -1,9 +1,9 @@
-POST http://localhost:3003/api/blogs
+POST http://localhost:3001/api/blogs
 Content-Type: application/json
 
 {
-  "title": "Joel jabs the Jimmster",
-  "author": "Cornelius",
-  "url": "www.google.com",
-  "likes": 62
+  "title": "Dalai Lama lama lama",
+  "author": "Cornelius Rex",
+  "url": "www.google.com/lame",
+  "likes": 104
 }
