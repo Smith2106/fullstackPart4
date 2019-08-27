@@ -74,3 +74,20 @@ describe('total likes', () => {
     expect(result).toBe(0)
   })
 })
+
+describe('favorite blog', () => {
+  test('when list has only one blog equals the likes of that', () => {
+    const result = listHelper.favoriteBlog([blogs[1]])
+    expect(result).toEqual(blogs[1])
+  })
+
+  test('when list has multiple blogs with different like counts', () => {
+    const result = listHelper.favoriteBlog(blogs)
+    expect(result).toEqual(blogs[2])
+  })
+
+  test('when list has no blogs', () => {
+    const result = listHelper.favoriteBlog([])
+    expect(result).toEqual({})
+  })
+})
