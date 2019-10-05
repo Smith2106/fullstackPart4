@@ -69,58 +69,25 @@ test('blog can be added to blog list', async () => {
   expect(response.body[helper.initialBlogs.length]).toEqual(newBlog);
 });
 
-// test('the first blog is about react patterns', async () => {
-//   const response = await api.get('/api/blogs')
+test('default likes is 0', async () => {
+  const newBlog = {
+    title: "Wozza Bozza",
+    author: "Corn Cab",
+    url: "www.game.org/lameo/wowza",
+  }
 
-//   expect(response.body[0].title).toBe('React patterns')
-// })
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+    .expect('Content-Type', /application\/json/);
 
-// test('a specific blog is within the returned blogs', async () => {
-//   const response = await api.get('/api/blogs')
-
-//   const titles = response.body.map(r => r.title)
-
-//   expect(titles).toContain(
-//     'Canonical string reduction'
-//   )
-// })
-
-// test('a valid note can be added ', async () => {
-//   const newNote = {
-//     content: 'async/await simplifies making async calls',
-//     important: true,
-//   }
-
-//   await api
-//     .post('/api/notes')
-//     .send(newNote)
-//     .expect(200)
-//     .expect('Content-Type', /application\/json/)
-
-//   const response = await api.get('/api/notes')
-
-//   const contents = response.body.map(r => r.content)
-
-//   expect(response.body.length).toBe(helper.initialNotes.length + 1)
-//   expect(contents).toContain(
-//     'async/await simplifies making async calls'
-//   )
-// })
-
-// test('note without content is not added', async () => {
-//   const newNote = {
-//     important: true
-//   }
-
-//   await api
-//     .post('/api/notes')
-//     .send(newNote)
-//     .expect(400)
-
-//   const response = await api.get('/api/notes')
-
-//   expect(response.body.length).toBe(initialNotes.length)
-// })
+  const response = await api.get('/api/blogs');
+  
+  expect(response.body.length).toBe(helper.initialBlogs.length + 1);
+  expect(response.body[helper.initialBlogs.length].likes).toBeDefined();
+  expect(response.body[helper.initialBlogs.length].likes).toBe(0);
+})
 
 afterAll(() => {
   mongoose.connection.close();
