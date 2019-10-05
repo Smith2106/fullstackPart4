@@ -104,6 +104,31 @@ test('blog without title and url is invalid', async () => {
   expect(response.body.length).toBe(helper.initialBlogs.length);
 })
 
+test('existing blog is deleted', async () => {
+  await api
+    .delete('/api/blogs/5a422ba71b54a676234d17fb')
+    .expect(200);
+
+  const response = await api.get('/api/blogs');
+  
+  expect(response.body.length).toBe(helper.initialBlogs.length - 1);
+})
+
+test('existing blog is updated', async () => {
+  const updatedBlog = {
+    likes: 100
+  }
+
+  await api
+    .put('/api/blogs/5a422ba71b54a676234d17fb')
+    .send(updatedBlog)
+    .expect(200);
+
+  const response = await api.get('/api/blogs');
+  
+  expect(response.body[4].likes).toBe(100);
+})
+
 afterAll(() => {
   mongoose.connection.close();
 })
