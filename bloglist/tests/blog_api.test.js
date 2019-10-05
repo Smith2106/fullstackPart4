@@ -37,9 +37,9 @@ test('blogs are returned as json', async () => {
 });
 
 test('there are six blogs', async () => {
-  const response = await api.get('/api/blogs')
+  const response = await api.get('/api/blogs');
 
-  expect(response.body.length).toBe(helper.initialBlogs.length)
+  expect(response.body.length).toBe(helper.initialBlogs.length);
 })
 
 test('blog post has id property', async () => {
@@ -47,6 +47,27 @@ test('blog post has id property', async () => {
 
   expect(response.body[0].id).toBeDefined();
 })
+
+test('blog can be added to blog list', async () => {
+  const newBlog = {
+    title: "Woah Momma",
+    author: "Cornelius Rex",
+    url: "www.google.com/lame/wow",
+    likes: 2000
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+    .expect('Content-Type', /application\/json/);
+
+  const response = await api.get('/api/blogs');
+  
+  expect(response.body.length).toBe(helper.initialBlogs.length + 1);
+  newBlog.id = response.body[helper.initialBlogs.length].id
+  expect(response.body[helper.initialBlogs.length]).toEqual(newBlog);
+});
 
 // test('the first blog is about react patterns', async () => {
 //   const response = await api.get('/api/blogs')
