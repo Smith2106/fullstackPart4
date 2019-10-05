@@ -42,6 +42,12 @@ test('there are six blogs', async () => {
   expect(response.body.length).toBe(helper.initialBlogs.length)
 })
 
+test('blog post has id property', async () => {
+  const response = await api.get('/api/blogs');
+
+  expect(response.body[0].id).toBeDefined();
+})
+
 // test('the first blog is about react patterns', async () => {
 //   const response = await api.get('/api/blogs')
 
