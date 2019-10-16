@@ -10,6 +10,19 @@ usersRouter.get('/', async (request, response,next) => {
 usersRouter.post('/', async (request, response, next) => {
   try {
     const body = request.body
+    if (!body.password) {
+      throw {
+        message: 'Password must be included',
+        name: 'ValidationError'
+      }
+    }
+    else if (body.password.length < 3) {
+      throw {
+        message: 'Password must be at least 3 characters long',
+        name: 'ValidationError'
+      }
+    }
+    console.log(body)
 
     const saltRounds = 10
     const passwordHash = await bcrypt.hash(body.password, saltRounds)

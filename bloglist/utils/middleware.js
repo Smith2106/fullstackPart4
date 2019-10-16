@@ -13,12 +13,15 @@ const unknownEndpoint = (request, response) => {
 }
 
 const errorHandler = (error, request, response, next) => {
-  logger.error(error.message)
-
   if (error.name === 'CastError' && error.kind === 'ObjectId') {
     return response.status(400).send({ error: 'malformatted id' })
-  } else if (error.name === 'ValidationError') {
-    return response.status(400).json({ error: error.message })
+  } else if (error.name === 'ValidationError' || error.name === 'MongoError') {
+    if (error.errors) {
+      console.log(error.errors)
+      return response.status(400).json(Object.keys(error.errors).map(errName => `${errName}: ${error.errors[errName]}`));
+    }
+
+    return response.status(400).json(error.message);
   }
 
   next(error)
