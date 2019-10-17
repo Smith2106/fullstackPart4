@@ -2,8 +2,8 @@ POST http://localhost:3001/api/blogs
 Content-Type: application/json
 
 {
-  "title": "Dalai Lama lama lama lama",
-  "author": "Cornelius Rex",
+  "title": "Blame Commuies",
+  "author": "Cortius rex",
   "url": "www.google.com/lame",
-  "likes": 104
+  "likes": 1002
 }
