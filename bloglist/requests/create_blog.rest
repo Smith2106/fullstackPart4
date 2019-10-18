@@ -3,8 +3,8 @@ Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaW1vdiIsImlkIjoiNWRhOTBjOTc2YjJmNGQ2OTJkOWYwODc0IiwiaWF0IjoxNTcxMzYwODg0fQ.oF4gGlQ1H1DN_O9qepidOqrDcWhmYw9efFrSlUPUk5I
 
 {
-  "title": "Wammie Bammie",
-  "author": "Isaac",
-  "url": "www.google.slam",
-  "likes": 21200
+  "title": "Slammie Bammie",
+  "author": "Isaac Caldero",
+  "url": "www.google.bam",
+  "likes": 40000
 }

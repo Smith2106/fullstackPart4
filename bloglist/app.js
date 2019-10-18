@@ -18,10 +18,11 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true })
   .catch((error) => {
     logger.error('error connection to MongoDB:', error.message)
   })
-
+  
 app.use(cors())
 app.use(bodyParser.json())
 app.use(middleware.requestLogger)
+app.use(middleware.tokenExtractor)
 app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
