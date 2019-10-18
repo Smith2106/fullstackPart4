@@ -1,9 +1,10 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFzaW1vdiIsImlkIjoiNWRhOTBjOTc2YjJmNGQ2OTJkOWYwODc0IiwiaWF0IjoxNTcxMzYwODg0fQ.oF4gGlQ1H1DN_O9qepidOqrDcWhmYw9efFrSlUPUk5I
 
 {
-  "title": "Blame Commuies",
-  "author": "Cortius rex",
-  "url": "www.google.com/lame",
-  "likes": 1002
+  "title": "Wammie Bammie",
+  "author": "Isaac",
+  "url": "www.google.slam",
+  "likes": 21200
 }
