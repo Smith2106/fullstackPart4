@@ -51,10 +51,10 @@ blogsRouter.delete('/:id', async (request, response, next) => {
     const blog = await Blog.findById(request.params.id);
 
     if (blog.user.toString() !== user.id) {
-      return response.status(401).json({ error: 'Only the user that created this blog can delete it.' })
+      return response.status(401).json({ error: 'Only the user that created this blog can delete it' })
     }
 
-    const result = await blog.delete()
+    const result = await Blog.findByIdAndDelete(blog.id)
     response.status(200).json(result)
   }
   catch(exception) {
